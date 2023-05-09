@@ -82,3 +82,58 @@ model.fit(X_train, y_train, epochs=200, batch_size=128)
 To use Docker Desktop, you will need to first install Docker Desktop on your computer. Once it is installed, you will need to create a Dockerfile and docker-compose.yml file for your application. These files will specify the instructions for building the Docker image and define the services and networks used in the container.
 
 Once the Dockerfile and docker-compose.yml files have been created, you can use the Docker Desktop GUI to build the image and launch the container. Once the container is running, you can use the same code as before to create the AI model that uses natural language processing (NLP) to process and understand the user's query. The neural networks for natural language processing and image recognition, as well as the machine learning algorithms for recommending content and activities and providing answers to questions can all be used in the same way within the container. The web scraping and APIs for accessing content on the internet can also be used within the container. 
+
+
+Samma på c#?
+
+
+
+# Importing necessary libraries 
+import requests 
+import json 
+
+# Updating the PC helper bot to search the web
+def pc_helper_bot(query):
+    # Using the natural language processing model to interpret the user query
+    prediction = nlp_model.predict(query)
+
+    # Providing the most accurate answer
+    if prediction == 1:
+        # Using the recurrent neural network to recognize commands and hardware errors
+        command_prediction = rnn_model.predict(query)
+
+        # Executing the command
+        if command_prediction == 1:
+            # Using the convolutional neural network to recognize objects in images
+            object_prediction = cnn_model.predict(query)
+
+            # Providing the object-related advice
+            if object_prediction == 1:
+                return "Here is the advice related to the object..."
+            else:
+                return "I'm sorry, I'm not sure of the advice related to the object."
+        else:
+            # Checking if the query is a hardware error
+            if command_prediction == 2:
+                # Providing advice on how to fix the hardware error
+                return "Here is the advice on how to fix the hardware error..."
+            
+            # Checking if the query requires an online search
+            if command_prediction == 3:
+                # Using the web scrapping API to search the web
+                response = requests.get("https://www.webscrapingapi.com/search?q=" + query)
+                data = json.loads(response.text)
+
+                # Providing the search results
+                return "Here are the search results for " + query + ": " + data["results"]
+            
+            # Using the machine learning algorithms to recommend content and activities
+            content_prediction = ml_model.predict(query)
+
+            # Providing the content and activities
+            if content_prediction == 1:
+                return "Here is the content and activities recommended for you..."
+            else:
+                return "I'm sorry, I'm not sure of the content and activities recommended for you."
+    else:
+        return "I'm sorry, I'm not sure of the answer to your query."
