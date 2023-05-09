@@ -1,0 +1,48 @@
+"""
+1.Make python code teacherbot that teaches python coding with interactive ui.
+2.Test drive it.
+"""
+
+
+# Teacherbot
+def teacherbot():
+    print("Welcome to the Python teacherbot!\n")
+    print("Let's get started.\n")
+
+    while True:
+        print("What would you like to learn?\n")
+        print("1. Variables\n2. Control Flow\n3. Functions\n4. Classes\n5. Quit\n")
+        answer = input("Please enter the number of your choice: ")
+
+        if answer == "1":
+            print("\nVariables store values and are used to reference these values later. You can think of them as labels you can use to refer to a value.\n")
+            print("For example, if you wanted to store the value 3, you could assign it to a variable x like this: x = 3\n")
+            print("You can then use this variable to refer to the value 3 like this: print(x)\n")
+
+        elif answer == "2":
+            print("\nControl Flow is used to control the flow of code execution. This is done by using conditional statements like if, else, and while.\n")
+            print("For example, if you wanted to print \"Hello World\" if a variable x is greater than 5, you could use an if statement like this:")
+            print("if x > 5:")
+            print("    print(\"Hello World\")\n")
+
+        elif answer == "3":
+            print("\nFunctions are blocks of code that can be reused and called upon when needed. They are used to organize and simplify code.\n")
+            print("For example, if you wanted to define a function that prints \"Hello World\", it would look like this:")
+            print("def hello_world():")
+            print("    print(\"Hello World\")\n")
+            print("You can then call this function like this: hello_world()\n")
+
+        elif answer == "4":
+            print("\nClasses are used to create objects. Objects have attributes (variables) and methods (functions) that can be used to interact with the object.\n")
+            print("For example, if you wanted to create a class called Person, it would look like this:")
+            print("class Person:")
+            print("    def __init__(self, name):")
+            print("        self.name = name\n")
+            print("You can then create an object of this class like this: person = Person(\"John\")\n")
+
+        elif answer == "5":
+            print("\nGoodbye!\n")
+            break
+
+        else:
+            print("\nI'm sorry, that is not a valid option.\n")
