@@ -1,8 +1,3 @@
-"""
-1.Make python code teacherbot that teaches python coding with interactive ui.
-2.Test drive it.
-"""
-
 
 # Teacherbot
 def teacherbot():
@@ -30,7 +25,7 @@ def teacherbot():
             print("For example, if you wanted to define a function that prints \"Hello World\", it would look like this:")
             print("def hello_world():")
             print("    print(\"Hello World\")\n")
-            print("You can then call this function like this: hello_world()\n")
+            print("You can then call this function like this: hello_world()\n
 
         elif answer == "4":
             print("\nClasses are used to create objects. Objects have attributes (variables) and methods (functions) that can be used to interact with the object.\n")
@@ -46,3 +41,364 @@ def teacherbot():
 
         else:
             print("\nI'm sorry, that is not a valid option.\n")
+            
+            
+         """
+1.Make python code teacherbot that teaches python coding with interactive ui.
+2.Code should be in gui.
+3.teacherbot could have multiple projects also to choose from:
+-Build simple Timestable game with score system
+-Build Personal assistant bot with natural and neural language libraries
+-Build rock paper scissors game
+"""
+
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
+
+#create window
+window = tk.Tk()
+window.title("Teacherbot")
+window.geometry("400x400")
+
+#create functions for buttons
+def Timestable_game():
+    messagebox.showinfo("Projects","You have chosen Timestable game with score system")
+
+def Personal_assistant():
+    messagebox.showinfo("Projects","You have chosen Personal assistant bot with natural and neural language libraries")
+
+def RockPaperScissors():
+    messagebox.showinfo("Projects","You have chosen Rock Paper Scissors game")
+
+
+#create labels
+l1 = Label(window,text="Welcome to Teacherbot !", fg="black")
+l1.pack()
+
+l2 = Label(window,text="Choose your project:", fg="black")
+l2.pack()
+
+#create buttons
+b1=Button(window, text="Timestable game with score system", command=Timestable_game,fg="black")
+b1.pack()
+
+b2=Button(window, text="Personal assistant bot", command=Personal_assistant,fg="black")
+b2.pack()
+
+b3=Button(window, text="Rock Paper Scissors game", command=RockPaperScissors,fg="black")
+b3.pack()
+
+window.mainloop()
+
+Code for timestable game with score system
+
+import tkinter as tk
+from tkinter import *
+import random
+
+#create window
+window = tk.Tk()
+window.title("Timestable game")
+window.geometry("400x400")
+
+#create labels
+l1 = Label(window,text="Welcome to the Timestable game!", fg="black")
+l1.pack()
+
+l2 = Label(window,text="Score: 0", fg="black")
+l2.pack()
+
+#create functions for buttons
+def check():
+    num1 = random.randint(1,10)
+    num2 = random.randint(1,10)
+    l3 = Label(window,text=str(num1)+"x"+str(num2), fg="black")
+    l3.pack()
+    answer = int(e1.get())
+    if answer == num1*num2:
+        l4 = Label(window,text="Correct", fg="black")
+        l4.pack()
+        score = int(l2['text'][7:])
+        score += 1
+        l2.config(text="Score: "+str(score))
+    else:
+        l4 = Label(window,text="Wrong", fg="black")
+        l4.pack()
+
+#create entry box
+e1 = Entry(window)
+e1.pack()
+
+#create check button
+b1=Button(window, text="Check", command=check,fg="black")
+b1.pack()
+
+window.mainloop()
+
+code for rock paper scissors game
+
+import tkinter as tk
+from tkinter import *
+import random
+
+#create window
+window = tk.Tk()
+window.title("Rock Paper Scissors Game")
+window.geometry("400x400")
+
+#create labels
+l1 = Label(window,text="Welcome to the Rock Paper Scissors game!", fg="black")
+l1.pack()
+
+l2 = Label(window,text="Score: 0", fg="black")
+l2.pack()
+
+#create functions for buttons
+def check():
+    user_choice = e1.get()
+    choices = ["Rock","Paper","Scissors"]
+    computer_choice = random.choice(choices)
+    l3 = Label(window,text="Computer Choice: "+computer_choice, fg="black")
+    l3.pack()
+    if user_choice == computer_choice:
+        l4 = Label(window,text="It's a draw!", fg="black")
+        l4.pack()
+    elif user_choice == "Rock" and computer_choice == "Scissors":
+        l4 = Label(window,text="You win!", fg="black")
+        l4.pack()
+        score = int(l2['text'][7:])
+        score += 1
+        l2.config(text="Score: "+str(score))
+    elif user_choice == "Paper" and computer_choice == "Rock":
+        l4 = Label(window,text="You win!", fg="black")
+        l4.pack()
+        score = int(l2['text'][7:])
+        score += 1
+        l2.config(text="Score: "+str(score))
+    elif user_choice == "Scissors" and computer_choice == "Paper":
+        l4 = Label(window,text="You win!", fg="black")
+        l4.pack()
+        score = int(l2['text'][7:])
+        score += 1
+        l2.config(text="Score: "+str(score))
+    else:
+        l4 = Label(window,text="You lose!", fg="black")
+        l4.pack()
+
+#create entry box
+e1 = Entry(window)
+e1.pack()
+
+#create check button
+b1=Button(window, text="Check", command=check,fg="black")
+b1.pack()
+
+window.mainloop()
+
+code for personal assistant bot with large natural and neural language base that can run autonomous conversations
+
+import tkinter as tk
+from tkinter import *
+import random
+import nltk
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+import json
+import pickle
+import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Dropout
+from keras.optimizers import SGD
+
+#create window
+window = tk.Tk()
+window.title("Personal Assistant Bot")
+window.geometry("400x400")
+
+#create labels
+l1 = Label(window,text="Welcome to the Personal Assistant Bot !", fg="black")
+l1.pack()
+
+#create functions for buttons
+def chat():
+    user_input = e1.get()
+    l2 = Label(window,text="User: "+user_input, fg="black")
+    l2.pack()
+    with open('intents.json') as json_data:
+        intents = json.load(json_data)
+    words = nltk.word_tokenize(user_input)
+    words = [lemmatizer.lemmatize(word.lower()) for word in words]
+    classes = np.zeros(len(intents['intents']))
+    for word in words:
+        for intent in intents['intents']:
+            if word in intent['patterns']:
+                classes[intents['intents'].index(intent)] = 1
+    input = np.array(classes).reshape(1,-1)
+    model = Sequential()
+    model.add(Dense(128, input_shape=(len(classes),), activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(len(classes), activation='softmax'))
+    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    model.load_weights('bot_model.h5')
+    results = model.predict(input)
+    results_index = np.argmax(results)
+    tag = intents['intents'][results_index]['tag']
+    for intent in intents['intents']:
+        if intent['tag'] == tag:
+            l3 = Label(window,text="Bot: "+random.choice(intent['responses']), fg="black")
+            l3.pack()
+
+#create entry box
+e1 = Entry(window)
+e1.pack()
+
+#create check button
+b1=Button(window, text="Chat", command=chat,fg="black")
+b1.pack()
+
+window.mainloop()
+
+write instructions and requirements to run the above code
+
+Instructions:
+
+1. To run the Teacherbot code, you will need to have Python 3.x installed on your computer.
+2. Download the code and save it as a .py file.
+3. Open the .py file in your preferred text editor and run it.
+4. The Teacherbot window will appear and you can click on the project buttons to choose a project.
+5. Follow the instructions for each project to complete it.
+
+Requirements:
+
+• Python 3.x
+• Tkinter Module
+• Messagebox Module
+• NLTK Module
+• Numpy Module
+• Keras Module
+• Pickle Module
+
+
+Another chatbot AI:
+
+# Importing necessary libraries 
+import tensorflow as tf 
+import keras 
+import pytorch 
+import webscraping
+import APIs 
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+
+# Defining the neural network for natural language processing
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Dense(128, activation='relu'))
+model.add(tf.keras.layers.Dense(64, activation='relu'))
+model.add(tf.keras.layers.Dense(32, activation='relu'))
+model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
+
+# Compiling the neural network
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+# Training the neural network
+model.fit(X_train, y_train, epochs=200, batch_size=128)
+
+# Defining the convolutional neural network for image recognition
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+model.add(tf.keras.layers.MaxPooling2D((2, 2)))
+model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(tf.keras.layers.MaxPooling2D((2, 2)))
+model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(64, activation='relu'))
+model.add(tf.keras.layers.Dense(10, activation='softmax'))
+
+# Compiling the convolutional neural network
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# Training the convolutional neural network
+model.fit(X_train, y_train, epochs=10)
+
+# Using web scraping and APIs to access content on the internet
+content = webscraping.scrape_website(url)
+content = APIs.fetch_data_from_api(url)
+
+# Using machine learning algorithms to recommend content and activities
+clf = DecisionTreeClassifier()
+clf.fit(X, y)
+
+clf = RandomForestClassifier(n_estimators=100)
+clf.fit(X, y)
+
+clf = SVC()
+clf.fit(X, y)
+
+# Using natural language processing to process the user's query and provide the most accurate answer
+query = input("Please enter your query:")
+
+nlp_model = tf.keras.models.Sequential()
+nlp_model.add(tf.keras.layers.Dense(128, activation='relu'))
+nlp_model.add(tf.keras.layers.Dense(64, activation='relu'))
+nlp_model.add(tf.keras.layers.Dense(32, activation='relu'))
+nlp_model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
+
+# Compiling the natural language processing model
+nlp_model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+# Training the natural language processing model
+nlp_model.fit(X_train, y_train, epochs=200, batch_size=128)
+
+# Using the natural language processing model to interpret the user query
+prediction = nlp_model.predict(query)
+
+# Providing the most accurate answer
+if prediction == 1:
+    print("The answer to your query is...")
+else:
+    print("I'm sorry, I'm not sure of the answer to your query.")
+
+This in beautiful GUI form
+
+import tkinter as tk
+
+window = tk.Tk()
+window.title("AI Natural Language Processing Model")
+window.geometry("400x400")
+
+# Label
+label = tk.Label(window, text="Please enter your query:")
+label.pack()
+
+# Text Box
+query = tk.Entry(window)
+query.pack()
+
+# Submit Button
+submit = tk.Button(window, text="Submit", command=process_query)
+submit.pack()
+
+# Answer Label
+answer = tk.Label(window)
+answer.pack()
+
+window.mainloop()
+
+def process_query():
+    # Using the natural language processing model to interpret the user query
+    prediction = nlp_model.predict(query.get())
+
+    # Providing the most accurate answer
+    if prediction == 1:
+        answer.config(text="The answer to your query is...")
+    else:
+        answer.config(text="I'm sorry, I'm not sure of the answer to your query.")
+
+
