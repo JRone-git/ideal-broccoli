@@ -1,0 +1,31 @@
+then(data => {
+                document.getElementById('output').textContent = data.output;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>
+```
+
+In this example, the CodeMirror editor is initialized with Python syntax highlighting and line numbers. When the user clicks the "Run" button, the `runCode()` function is called, which sends the user's code to the server using a POST request and gets the output back in JSON format. The output is then displayed in the `#output` div.
+
+On the server side, you can define a Flask or Django route that receives the user's code, executes it using the `exec()` function (with appropriate safety measures to prevent malicious code execution), captures the output using the `io` module, and returns it back to the client in JSON format:
+
+```python
+import io
+import json
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/run', methods=['POST'])
+def run_code():
+    code = request.json['code']
+    output = io.StringIO()
+    try:
+        exec(code, {}, {'__builtins__': None}, output)
+    except Exception as e:
+        output.write(str(e))
